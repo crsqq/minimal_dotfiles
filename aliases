@@ -1,0 +1,76 @@
+# aliases & functions
+
+
+alias ls="ls --color"
+alias ll="ls -lh --color"
+alias la="ls -alh --color"
+
+alias listlarge="du -hsx * | sort -rh | head -10"
+
+
+alias myip="curl -L -s http://ipecho.net/plain"
+
+function mcd(){
+    mkdir -p $argv[1]; cd $argv[1]
+}
+
+alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit $argv;"
+
+
+
+# Defined in - @ line 0
+alias pbcopy="xclip -selection clipboard"
+alias pbpaste="xclip -selection clipboard -o"
+
+function tmp-chrome() {
+google-chrome  --user-data-dir=$(mktemp -d) --no-first-run
+}
+
+
+alias ip='ip --color=auto'
+
+function rgc() {
+    git commit -m "$(curl -s http://whatthecommit.com/index.txt)"
+}
+
+function conv1200(){
+    arg1=$1
+    arg2=resized_${arg1// /_}
+    convert $arg1 -resize 1200 $arg2
+}
+
+
+extract () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar e $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)     echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+
+
+function updg {
+    if command -v pacman &> /dev/null
+    then
+        echo "pacman available"
+        sudo pacman -Suy
+    elif command -v apt &> /dev/null
+    then
+        echo "apt available"
+        sudo apt update && sudo apt upgrade
+    fi
+}

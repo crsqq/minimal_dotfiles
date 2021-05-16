@@ -1,0 +1,10 @@
+"vim: set ft=vim :
+
+"" Useful default colorscheme
+"" blackbeauty, darkbrown, desertEx, desert256
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+
+source ~/dotfiles/vimrc_keybindings
